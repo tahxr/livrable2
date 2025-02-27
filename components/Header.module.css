@@ -1,0 +1,138 @@
+.header {
+  background-color: #001C3C;
+  border-bottom-left-radius: 2ch;
+  border-bottom-right-radius: 2ch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  z-index: 1000;
+}
+
+.div {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 80px; 
+  height: auto;
+  margin-right: 10px;
+}
+
+.header h1 {
+  margin: 0;
+  color: aliceblue;
+  font-size: 1.5rem;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav ul li {
+  margin-right: 20px;
+  position: relative;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: font-size 0.2s ease-in-out;
+}
+
+.nav ul li a:hover {
+  font-size: 1.1rem;
+}
+
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  background-color: #001c3cc9;
+  padding: 10px;
+  list-style: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+}
+
+.dropdownMenu a {
+  color: #fff;
+  padding: 8px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.dropdownMenu a:hover {
+  background-color: #2c6ed7;
+}
+
+.dropdown:hover .dropdownMenu {
+  display: block;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.mobileMenu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 100%;
+  background-color: #001C3C;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.mobileMenu a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .nav ul {
+      display: none;
+  }
+
+  .burger {
+      display: flex;
+  }
+
+  .mobileMenu.active {
+      display: flex;
+  }
+}

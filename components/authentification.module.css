@@ -1,0 +1,80 @@
+.authFormContainer {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.authFormContainer h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.authForm label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-weight: 600;
+    color: #444;
+}
+
+.authForm input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.authForm input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.authForm button {
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.authForm button:hover {
+    background: #0056b3;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 14px;
+    text-align: left;
+}
+
+.toggleText {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.toggleLink {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.toggleLink:hover {
+    text-decoration: underline;
+}

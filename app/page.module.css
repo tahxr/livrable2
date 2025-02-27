@@ -1,0 +1,147 @@
+/* Styles généraux */
+
+
+.a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Section Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+ color:#f4f4f4;
+  overflow: hidden;
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: auto;
+}
+
+.heroImage {
+  filter: brightness(0.7);
+  /* Assombrir l'image pour mieux voir le texte */
+}
+
+.heroContent {
+  z-index: 1;
+  max-width: 800px;
+  padding: 10px;
+}
+
+.heroContent h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.heroContent p {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #8b7355;
+  /* Couleur chic */
+  color: white;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #6b5a4a;
+  /* Couleur plus foncée au survol */
+}
+
+/* Section À propos */
+.section {
+  padding: 20px 20px;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.section p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.interiorImage {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Menu */
+.menuGallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.menuItem {
+  max-width: 300px;
+  text-align: center;
+  
+}
+
+.dishImage {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.dishImage:hover {
+  transform: scale(1.05);
+}
+
+.menuItem h3 {
+  font-size: 1.8rem;
+  
+}
+
+.menuItem p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Section Réservation et Contact */
+#reservation,
+#contact {
+  background-color: #f4f4f4;
+  padding: 80px 20px;
+}
+
+#reservation .ctaButton,
+#contact .ctaButton {
+  background-color: #333;
+  color: white;
+}
+
+#reservation .ctaButton:hover,
+#contact .ctaButton:hover {
+  background-color: #555;
+}

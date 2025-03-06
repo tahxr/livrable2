@@ -1,7 +1,5 @@
 .header {
-  background-color: #001C3C;
-  border-bottom-left-radius: 2ch;
-  border-bottom-right-radius: 2ch;
+  background-color: #070707;
   display: flex;
   align-items: center;
   justify-content: space-between;

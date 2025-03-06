@@ -41,12 +41,7 @@ export default function Menus() {
         <Link href="#">Menu des spiritueux et digestifs</Link>
       </div>
 
-      {/* Section Contact */}
-      <div className={styles.contact}>
-        <p className={styles.phoneNumber}>819 243-0001</p>
-        <button className={styles.bookBtn}>RÉSERVER AVEC LIBRO</button>
-        <button className={styles.orderBtn}>Commander en ligne</button>
-      </div>
+
 
       {/* Sections des menus */}
       <div className={styles.menuSections}>
@@ -57,7 +52,8 @@ export default function Menus() {
             <p>
               Le resto propose une ambiance chic et décontractée pour savourer des plats raffinés. 
               Découvrez une cuisine riche en saveurs !
-            </p>
+            </p>            
+            <button className={styles.menuBtn}>CONSULTER LE MENU</button>
           </div>
         </div>
 
@@ -67,7 +63,9 @@ export default function Menus() {
             <p>
               Une option rapide et savoureuse pour vos repas d'affaires ou vos sorties entre amis !
             </p>
+            <Link href="/evenements/Lunch">
             <button className={styles.menuBtn}>CONSULTER LE MENU</button>
+            </Link>
           </div>
           <Image src={lunch} alt="Lunch" width={500} height={300} className={styles.roundedImage} />
         </div>

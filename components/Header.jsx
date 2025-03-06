@@ -12,10 +12,12 @@ export default function Header() {
 
     return (
         <header className={styles.header}>
+           
             <div className={styles.div}>
-                <Image src={logo} alt="Logo Spectacite" className={styles.logo} />
-                <h1>Restaurant BonGout</h1>
+            <Image src={logo} alt="Logo Spectacite" className={styles.logo} />
+            <h1>Restaurant BonGout</h1>
             </div>
+            
 
             {/* Menu pour Desktop */}
             <nav className={styles.nav}>
@@ -25,15 +27,7 @@ export default function Header() {
                     </li>
                     <li className={styles.dropdown}>
                         <Link href="/evenements">Menus</Link>
-                        <div className={styles.dropdownMenu}>
-                            <Link href="/evenements/concerts">Menu dîner et souper</Link>
-                            <Link href="/evenements/theatre">Menu enfants</Link>
-                            <Link href="/evenements/danse">Menu des bières et cocktails</Link>
-                            <Link href="/evenements/standup">Menu des vins</Link>
-                            <Link href="#">Menu des spiritueux et des digestifs</Link>
-                            <Link href="#">Menu groupe (11 pers. et plus)</Link>
-                            <Link href="#">Menu Saint-Valentin</Link>
-                        </div>
+                
                     </li>
                     <li>
                         <Link href="/contact">Nous joindre</Link>

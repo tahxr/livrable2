@@ -1,85 +1,85 @@
 .lunchContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .banner {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-color: #f5f5f5; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .bannerText {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 15px 30px;
-    border-radius: 10px;
-    color: #fff;
-  }
-  
-  .lunchIntro {
-    text-align: center;
-    margin: 30px 0;
-    font-size: 18px;
-  }
-  
-  .lunchMenu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .menuItem {
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .menuText h2 {
-    margin: 10px 0;
-    font-size: 22px;
-    color: #333;
-  }
-  
-  .menuText p {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  .backButton {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .backButton button {
-    background-color: #ff7f50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .backButton button:hover {
-    background-color: #e76b42;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .menuImage {
-    border-radius: 10px;
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-  }
-  
+.banner {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bannerText {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 30px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.lunchIntro {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 18px;
+}
+
+.lunchMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menuItem {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menuText h2 {
+  margin: 10px 0;
+  font-size: 22px;
+  color: #333;
+}
+
+.menuText p {
+  font-size: 16px;
+  color: #555;
+}
+
+.backButton {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.backButton button {
+  background-color: #ff7f50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.backButton button:hover {
+  background-color: #e76b42;
+}
+
+.menuImage {
+  border-radius: 10px;
+  object-fit: cover;
+  width: 100%;
+  height: 250px;
+  /* Fixez une hauteur constante */
+}

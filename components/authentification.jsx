@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./authentification.module.css"; // Assurez-vous que les styles sont bien importés
+import styles from "./authentification.module.css";
+import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function AuthForm() {
+    const router = useRouter();
     const [isRegister, setIsRegister] = useState(false);
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        firstName: "", // Nouveau champ Prénom
-        lastName: "",  // Nouveau champ Nom
+        firstname: "", // Nouveau champ Prénom
+        lastname: "",  // Nouveau champ Nom
     });
     const [errors, setErrors] = useState({});
+    const API_BASE_URL = "http://localhost:5000/api/auth";
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,8 +24,8 @@ export default function AuthForm() {
     const validateForm = () => {
         let newErrors = {};
         if (isRegister) {
-            if (!formData.firstName.trim()) newErrors.firstName = "Le prénom est requis.";
-            if (!formData.lastName.trim()) newErrors.lastName = "Le nom est requis.";
+            if (!formData.firstname.trim()) newErrors.firstname = "Le prénom est requis.";
+            if (!formData.lastname.trim()) newErrors.lastname = "Le nom est requis.";
         }
         if (!formData.email.trim()) {
             newErrors.email = "L'adresse e-mail est requise.";
@@ -41,9 +45,9 @@ export default function AuthForm() {
         e.preventDefault();
         setErrors({});
         if (!validateForm()) return;
-        
-        const endpoint = isRegister ? "/api/auth/register" : "/api/auth/login";
-        
+
+        const endpoint = isRegister ? `${API_BASE_URL}/register` : `${API_BASE_URL}/login`;
+
         try {
             const res = await fetch(endpoint, {
                 method: "POST",
@@ -51,10 +55,29 @@ export default function AuthForm() {
                 body: JSON.stringify(formData),
             });
             const data = await res.json();
-            
-            if (!res.ok) throw new Error(data.message || "Une erreur s'est produite");
-            
-            alert(isRegister ? "Inscription réussie !" : "Connexion réussie !");
+            console.log("Réponse de l'API :", data); // Vérifier ce que contient la réponse
+
+            if (!res.ok) {
+                throw new Error(data.message || "Une erreur s'est produite");
+            }
+            // Vérification de la présence de 'user' avant de le stocker
+            // Vérification de la présence de 'user' avant de le stocker
+            if (data && data.user) {
+                console.log("Données utilisateur à stocker :", data.user);
+                localStorage.setItem("user", JSON.stringify(data.user));  // Enregistrer l'utilisateur
+                localStorage.setItem("token", data.token);  // Enregistrer le token
+
+                // Si c'est une inscription, rediriger vers la page de connexion
+                if (isRegister) {
+                    alert("Inscription réussie !");
+                    router.push("/authentification");  // Rediriger vers la page de connexion
+                } else {
+                    alert("Connexion réussie !");
+                    window.location.href = "/reservation";  // Rediriger vers la page de réservation après la connexion
+                }
+            } else {
+                console.error("Les données utilisateur sont manquantes ou invalides.");
+            }
         } catch (err) {
             setErrors({ general: err.message });
         }
@@ -71,25 +94,25 @@ export default function AuthForm() {
                             <span>Prénom :</span>
                             <input
                                 type="text"
-                                name="firstName"
+                                name="firstname"
                                 placeholder="Prénom"
-                                value={formData.firstName}
+                                value={formData.firstname}
                                 onChange={handleChange}
                                 required
                             />
-                            {errors.firstName && <div className={styles.error}>{errors.firstName}</div>}
+                            {errors.firstname && <div className={styles.error}>{errors.firstname}</div>}
                         </label>
                         <label>
                             <span>Nom :</span>
                             <input
                                 type="text"
-                                name="lastName"
+                                name="lastname"
                                 placeholder="Nom"
-                                value={formData.lastName}
+                                value={formData.lastname}
                                 onChange={handleChange}
                                 required
                             />
-                            {errors.lastName && <div className={styles.error}>{errors.lastName}</div>}
+                            {errors.lastname && <div className={styles.error}>{errors.lastname}</div>}
                         </label>
                     </>
                 )}

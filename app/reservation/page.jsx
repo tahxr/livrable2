@@ -76,6 +76,20 @@ export default function ReservationPage() {
           </button>
         </form>
       </div>
+
+      {/* Google Maps iframe */}
+      <div className={styles.mapContainer}>
+        <h3>Localisation</h3>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.5060085082405!2d-75.62680759999999!3d45.4394585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0ff104b131ed%3A0x5045d05b7789c105!2sLa%20Cit%C3%A9%2C%20le%20coll%C3%A8ge%20d&#39;arts%20appliqu%C3%A9s%20et%20de%20technologie!5e0!3m2!1sfr!2sca!4v1741365254810!5m2!1sfr!2sca" 
+          width="600" 
+          height="450" 
+          style={{ border: 0 }} 
+          allowFullScreen="" 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </div>
     </div>
   );
 }

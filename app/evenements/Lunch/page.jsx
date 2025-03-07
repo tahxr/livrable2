@@ -7,7 +7,7 @@ import saladeCesar from "@/public/salade.jpg";
 import carbonara from "@/public/patte.jpg";
 import wrapVeg from "@/public/wrap.jpg";
 import quiche from "@/public/Quiche.jpg";
-
+import lunch from '@/public/lunch.jpg';
 import Link from "next/link";
 import styles from "./lunch.module.css"; // Import du CSS en module
 
@@ -15,7 +15,9 @@ export default function Lunch() {
   return (
     <div className={styles.lunchContainer}>
     {/* Bannière */}
+    
     <div className={styles.banner}>
+      
       <div className={styles.bannerText}>
         <h1>MENU LUNCH</h1>
         <p>Un menu varié pour une pause déjeuner savoureuse.</p>

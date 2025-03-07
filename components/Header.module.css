@@ -17,7 +17,7 @@
 }
 
 .logo {
-  width: 80px; 
+  width: 80px;
   height: auto;
   margin-right: 10px;
 }
@@ -123,14 +123,73 @@
 
 @media (max-width: 768px) {
   .nav ul {
-      display: none;
+    display: none;
   }
 
   .burger {
-      display: flex;
+    display: flex;
   }
 
   .mobileMenu.active {
-      display: flex;
+    display: flex;
+  }
+}
+
+
+/* User Info (Nom de l'utilisateur) */
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #f0f0f0; /* Fond gris clair */
+  padding: 8px 12px; /* Espacement interne */
+  border-radius: 20px; /* Coins arrondis */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.userInfo span {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+/* Bouton de déconnexion */
+.Button {
+  background-color: #FF5733;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.Button:hover {
+  background-color: #FF2A00;
+}
+
+.Button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 87, 51, 0.3); /* Ombre pour un focus plus visible */
+}
+
+/* Pour les petits écrans, afficher uniquement le prénom sans le bouton de déconnexion */
+@media (max-width: 768px) {
+  .userInfo {
+      gap: 5px;
+  }
+
+  .userInfo span {
+      font-size: 14px;
+  }
+
+  .Button {
+      font-size: 12px;
+      padding: 4px 8px;
   }
 }

@@ -2,6 +2,7 @@
   "name": "spectacite",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,20 +10,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^1.8.2",
     "bcryptjs": "^3.0.2",
+    "bootstrap": "^5.3.3",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.4.7",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.12.0",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
-    "type": "module",
     "react-hook-form": "^7.54.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/estree": "^1.0.6",
     "autoprefixer": "^10.4.20",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",

@@ -5,7 +5,7 @@ import dish1 from '@/public/dish1.jpg'; // Image d'un plat
 import dish2 from '@/public/dish2.jpg'; // Image d'un plat
 import dish3 from '@/public/dish3.jpg'; // Image d'un plat
 import interior from '@/public/interior.jpg'; // Image de l'intérieur du restaurant
-
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -23,7 +23,8 @@ export default function Home() {
         <div className={styles.heroContent}>
           <h1>Bienvenue chez BonGoût</h1>
           <p>Une expérience culinaire raffinée au cœur de la ville.</p>
-          <a href="#reservation" className={styles.ctaButton}>Réserver une table</a>
+          <Link href="/reservation" className={styles.ctaButton}>Réserver une table</Link>
+          
         </div>
       </section>
 

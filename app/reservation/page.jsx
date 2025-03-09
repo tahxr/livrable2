@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -11,11 +10,44 @@ export default function ReservationPage() {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
+  const [reservationStatus, setReservationStatus] = useState(""); // Pour gérer l'état de la réservation (succès/erreur)
 
   const predefinedTimes = ["12:00", "12:30", "13:00", "19:00", "19:30", "20:00", "20:30", "21:00"];
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Réservation confirmée :", data);
+    
+    // Récupérer le token JWT de votre stockage (par exemple, localStorage)
+    const token = localStorage.getItem('token'); // Ajustez cela selon la manière dont vous stockez le token
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, // Ajout du token dans l'en-tête
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          date: data.date,
+          time: data.time,
+          guests: data.guests,
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        setReservationStatus("Réservation réussie !");
+      } else {
+        setReservationStatus(result.message || "Erreur lors de la réservation.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la réservation :", error);
+      setReservationStatus("Erreur interne du serveur.");
+    }
   };
 
   return (
@@ -44,7 +76,7 @@ export default function ReservationPage() {
               selected={selectedDate} 
               onChange={(date) => {
                 setSelectedDate(date);
-                setValue("date", format(date, "yyyy-MM-dd"));
+                setValue("date", format(date, "dd/MM/yyyy"));
               }}
               className={styles.inputField}
               dateFormat="dd/MM/yyyy"
@@ -75,6 +107,8 @@ export default function ReservationPage() {
             Réserver
           </button>
         </form>
+
+        {reservationStatus && <p className={styles.statusMessage}>{reservationStatus}</p>}
       </div>
 
       {/* Google Maps iframe */}

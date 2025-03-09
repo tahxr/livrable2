@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "./authentification.module.css";
 import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function AuthForm() {
     const router = useRouter();
@@ -60,19 +61,30 @@ export default function AuthForm() {
             if (!res.ok) {
                 throw new Error(data.message || "Une erreur s'est produite");
             }
-            // Vérification de la présence de 'user' avant de le stocker
-            // Vérification de la présence de 'user' avant de le stocker
+            
             if (data && data.user) {
-                console.log("Données utilisateur à stocker :", data.user);
-                localStorage.setItem("user", JSON.stringify(data.user));  // Enregistrer l'utilisateur
-                localStorage.setItem("token", data.token);  // Enregistrer le token
+                const { id: userId, token } = data.user; // Extraction du userId et du token
+                console.log("ID utilisateur :", userId);
+                console.log("Token :", token);
+                Cookies.set("userId", data.user.id); // Lorsque l'utilisateur se connecte
+                localStorage.setItem("user", JSON.stringify(data.user)); // Stocker l'utilisateur
+                localStorage.setItem("token", data.token); // Stocker le token
+
+                // Vérifie dans la console si l'utilisateur est bien enregistré
+                console.log("Utilisateur dans localStorage:", JSON.parse(localStorage.getItem("user")));
+                Cookies.set("token", token, { expires: 1 / 24 });  // Enregistre le token
+
 
                 // Si c'est une inscription, rediriger vers la page de connexion
                 if (isRegister) {
                     alert("Inscription réussie !");
-                    router.push("/authentification");  // Rediriger vers la page de connexion
+                    window.location.href = "/authentification";  // Rediriger vers la page de connexion
                 } else {
                     alert("Connexion réussie !");
+                    Cookies.set("userId", userId);
+
+                    Cookies.set("token", data.token, { expires: 1 / 24 }); // 🔥 Expire après 1 heure (1/24 jour)
+
                     window.location.href = "/reservation";  // Rediriger vers la page de réservation après la connexion
                 }
             } else {

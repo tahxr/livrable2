@@ -1,6 +1,8 @@
+"use client";                    // 1. Declare this as a client component
+import Link from "next/link";
 import styles from "@/components/Footer.module.css";
 import Image from "next/image";
-import insta from "@/public/insta.png"
+import insta from "@/public/insta.png";
 
 export default function Footer() {
     return (
@@ -20,7 +22,10 @@ export default function Footer() {
                         Mardi à samedi : 15h - 22h<br />
                         Dimanche : Fermé
                     </p>
-                    <button className={styles.button}>RÉSERVER UNE TABLE</button>
+                    {/* 2. Wrap the button in a <Link> */}
+                    <Link href="/reservation">
+                        <button className={styles.button}>RÉSERVER UNE TABLE</button>
+                    </Link>
                 </div>
 
                 <div className={styles.section}>
@@ -36,10 +41,10 @@ export default function Footer() {
             <div className={styles.bottom}>
                 <p>© 2025 Resto BonGout | Tous droits réservés</p>
                 <div className={styles.socials}>
-                    <a href="#">instagram<Image
-            src={insta}
-            alt="Instagram" height={20}width={15}/></a>
-                   
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                        instagram
+                        <Image src={insta} alt="Instagram" height={20} width={15} />
+                    </a>
                 </div>
             </div>
         </footer>

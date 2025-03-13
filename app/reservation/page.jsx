@@ -1,6 +1,7 @@
 "use client"
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // 1. Import useRouter
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +12,8 @@ export default function ReservationPage() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [reservationStatus, setReservationStatus] = useState(""); // Pour gérer l'état de la réservation (succès/erreur)
+  
+  const router = useRouter(); // 2. Get router
 
   const predefinedTimes = ["12:00", "12:30", "13:00", "19:00", "19:30", "20:00", "20:30", "21:00"];
 
@@ -21,17 +24,19 @@ export default function ReservationPage() {
     const token = localStorage.getItem('token'); // Ajustez cela selon la manière dont vous stockez le token
   
     try {
+      const dateString = selectedDate.toISOString().split('T')[0]; // e.g. "2025-03-21"
       const response = await fetch("http://localhost:5000/api/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`, // Ajout du token dans l'en-tête
         },
+
         body: JSON.stringify({
           name: data.name,
           email: data.email,
           phone: data.phone,
-          date: data.date,
+          date: dateString,
           time: data.time,
           guests: data.guests,
         }),
@@ -41,6 +46,9 @@ export default function ReservationPage() {
   
       if (response.ok) {
         setReservationStatus("Réservation réussie !");
+        setTimeout(() => {
+          router.push("/reservation/myreservation");
+        }, 2000); // 2-second delay
       } else {
         setReservationStatus(result.message || "Erreur lors de la réservation.");
       }

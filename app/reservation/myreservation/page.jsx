@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";  // N'oublie pas d'importer js-cookie pour récupérer le token
+import Cookies from "js-cookie";
 import styles from "@/app/reservation/reservation.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,48 +10,55 @@ export default function MyReservations() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Récupérer l'ID de l'utilisateur connecté
-  const userId = Cookies.get("userId"); // Exemple : remplacer par l'ID de l'utilisateur actuel
-console.log("UserID dans React:", userId); 
+  const userId = Cookies.get("userId");
+
   useEffect(() => {
-    
     const fetchReservations = async () => {
-      const token = Cookies.get("token"); // Récupère le token depuis les cookies
-  
+      const token = Cookies.get("token");
       if (!token) {
         setError("Token manquant");
         setLoading(false);
         return;
       }
-  
+
       try {
-        // Ajouter le token dans les en-têtes de la requête
-        const response = await axios.get(`http://localhost:5000/api/reservations/user/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`, // Ajouter le token dans l'en-tête
+        // Retrieve user reservations
+        const response = await axios.get(
+          `http://localhost:5000/api/reservations/user/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
           }
-        });
+        );
         setReservations(response.data);
         setLoading(false);
       } catch (err) {
-        // Log de l'erreur avec détails
-        console.error("Erreur lors de la récupération des réservations : ", err.response || err.message);
-        setError("Une erreur interne est survenue. Veuillez réessayer plus tard.");
+        console.error("Erreur lors de la récupération :", err.response || err.message);
+        setError("Une erreur interne est survenue.");
         setLoading(false);
       }
     };
-  
+
     fetchReservations();
   }, [userId]);
-  
 
-  if (loading) {
-    return <p>Chargement des réservations...</p>;
-  }
+  // ---- NEW: Delete reservation handler ----
+  const handleDelete = async (reservationId) => {
+    try {
+      const token = Cookies.get("token");
+      await axios.delete(`http://localhost:5000/api/reservations/${reservationId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+      // After successful deletion on backend, remove it from local state
+      setReservations((prev) => prev.filter((res) => res.id !== reservationId));
+    } catch (err) {
+      console.error("Erreur lors de la suppression :", err.response || err.message);
+      setError("Impossible de supprimer la réservation.");
+    }
+  };
+
+  if (loading) return <p>Chargement des réservations...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className={styles.reservationsContainer}>
@@ -59,7 +66,7 @@ console.log("UserID dans React:", userId);
       {reservations.length === 0 ? (
         <p>Aucune réservation trouvée.</p>
       ) : (
-        <table class="table table-striped">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>Nom</th>
@@ -68,6 +75,7 @@ console.log("UserID dans React:", userId);
               <th>Date</th>
               <th>Heure</th>
               <th>Nombre de personnes</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -76,9 +84,15 @@ console.log("UserID dans React:", userId);
                 <td>{reservation.name}</td>
                 <td>{reservation.email}</td>
                 <td>{reservation.phone}</td>
-                <td>{reservation.date}</td>
+                <td>{new Date(reservation.date).toISOString().split("T")[0]}</td>
                 <td>{reservation.time}</td>
                 <td>{reservation.guests}</td>
+                <td>
+                  {/* NEW: A button to delete */}
+                  <button onClick={() => handleDelete(reservation.id)}>
+                    Supprimer
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

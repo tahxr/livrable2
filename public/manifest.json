@@ -1,0 +1,16 @@
+{
+    "name": "BonGoût Restaurant",
+    "short_name": "BonGoût",
+    "description": "Une expérience culinaire raffinée au cœur de la ville.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1B1F3B",
+    "icons": [
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
